@@ -13,21 +13,22 @@ namespace Agap2IT.Labs.RentACar.Dal
     {
         public async  Task<List<MyFirstPoco>> FindRedCarsRentedByClient(string colorName)
         {
-            var context = new Academy202303Context();
+            using (var context = new Academy202303Context())
+            {
+                var query = (from rent in context.Rents
+                             join car in context.Cars on rent.CarId equals car.Id
+                             join color in context.Colors on car.ColorId equals color.Id
+                             where color.Name == colorName
+                             select new MyFirstPoco
+                             {
+                                 CarId = car.Id,
+                                 ColorName = color.Name,
+                                 License = car.License
+                             });
 
-            var query = (from rent in context.Rents
-                         join car in context.Cars on rent.CarId equals car.Id
-                         join color in context.Colors on car.ColorId equals color.Id
-                         where color.Name == colorName
-                         select new MyFirstPoco
-                         {
-                             CarId = car.Id,
-                             ColorName = color.Name,
-                             License = car.License
-                         }) ;
-
-            var cars = await query.ToListAsync();
-            return cars;
+                var cars = await query.ToListAsync();
+                return cars;
+            }
         }
 
         public async Task<List<Car>> GetCarsRentedByClientId(int id)

@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Agap2IT.Labs.RentACar.Business;
 using Agap2IT.Labs.RentACar.Dal;
 using Agap2IT.Labs.RentACar.Data.Models;
 
@@ -35,10 +36,25 @@ var dao = new GenericDao();
 //dao.Add(new Rent { CarId = 1, ClientId = 1, StartDate = DateTime.UtcNow });
 
 
-var rentingDao = new RentingDao();
+//var rentingDao = new RentingDao();
 
-//var cars = await rentingDao.GetCarsRentedByClientId(1);
-var cars = await rentingDao.FindRedCarsRentedByClient("Amarelo");
+////var cars = await rentingDao.GetCarsRentedByClientId(1);
+//var cars = await rentingDao.FindRedCarsRentedByClient("Amarelo");
+
+var bo = new RentingBO();
+
+var opResult = await bo.GetClientById(1);
+
+if(opResult.HasSucceeded)
+{
+
+}
+else
+{
+
+}
+
+
 
 
 
