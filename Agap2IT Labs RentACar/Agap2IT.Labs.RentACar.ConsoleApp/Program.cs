@@ -37,7 +37,8 @@ var dao = new GenericDao();
 
 var rentingDao = new RentingDao();
 
-var cars = await rentingDao.GetCarsRentedByClientId(1);
+//var cars = await rentingDao.GetCarsRentedByClientId(1);
+var cars = await rentingDao.FindRedCarsRentedByClient("Amarelo");
 
 
 
