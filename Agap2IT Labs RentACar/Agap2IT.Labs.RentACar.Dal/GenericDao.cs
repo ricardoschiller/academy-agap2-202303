@@ -1,4 +1,5 @@
 ﻿using Agap2IT.Labs.RentACar.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +10,40 @@ namespace Agap2IT.Labs.RentACar.Dal
 {
     public class GenericDao
     {
-        public void Add<T>(T entity) where T: class
+        public async Task Add<T>(T entity) where T: class
         {
             var context = new Academy202303Context();
 
             context.Set<T>().Add(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void Update<T>(T entity) where T: class
+        public async Task Update<T>(T entity) where T: class
         {
             var context = new Academy202303Context();
 
             context.Set<T>().Update(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void Delete<T>(T entity) where T : class
+        public async Task Delete<T>(T entity) where T : class
         {
             var context = new Academy202303Context();
 
             context.Set<T>().Remove(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public T Get<T>(int id) where T : class
+        public async Task<T> Get<T>(int id) where T : class
         {
             var context = new Academy202303Context();
-            return context.Set<T>().Find(id);
+            return await context.Set<T>().FindAsync(id);
         }
 
-        public List<T> GetAll<T>() where T : class
+        public async Task<List<T>> GetAll<T>() where T : class
         {
             var context = new Academy202303Context();
-            return context.Set<T>().ToList();
+            return await context.Set<T>().ToListAsync();
         }
     }
 }

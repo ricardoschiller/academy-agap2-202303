@@ -24,7 +24,21 @@ Console.WriteLine("Hello, World!");
 //var dao = new EmployeesDao();
 //var employee = dao.Get(1);
 
-var gendao = new GenericDao();
-gendao.Add(new Color { Name = "Amarelo"});
+var dao = new GenericDao();
+
+//dao.Add(new Client { Name = "Victor", Address = "Victor Address", Cellphone = "961234567", Nif = "12345678", LicenseNumber = "123184894" });
+
+//dao.Add(new Model { Name = "Model S" });
+
+//dao.Add(new Car { Brand = "Tesla", BuildDate = new DateTime(2023, 3, 8), ColorId = 1, License = "ab3422", ModelId = 1, Observations = string.Empty });
+
+//dao.Add(new Rent { CarId = 1, ClientId = 1, StartDate = DateTime.UtcNow });
+
+
+var rentingDao = new RentingDao();
+
+var cars = await rentingDao.GetCarsRentedByClientId(1);
+
+
 
 Console.ReadLine();
