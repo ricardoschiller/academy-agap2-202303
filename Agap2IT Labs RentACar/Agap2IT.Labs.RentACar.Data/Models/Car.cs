@@ -15,6 +15,10 @@ public partial class Car
 
     public int ColorId { get; set; }
 
+    public DateTime BuildDate { get; set; }
+
+    public string Observations { get; set; }
+
     public virtual Color Color { get; set; } = null!;
 
     public virtual Model Model { get; set; } = null!;

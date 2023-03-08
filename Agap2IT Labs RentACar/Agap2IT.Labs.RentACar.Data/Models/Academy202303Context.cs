@@ -56,6 +56,9 @@ public partial class Academy202303Context : DbContext
                 .HasForeignKey(d => d.ModelId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Cars_Models");
+
+            entity.Property(e => e.BuildDate).HasPrecision(3);
+            entity.Property(e => e.Observations).HasMaxLength(2000).IsUnicode(false);
         });
 
         modelBuilder.Entity<Client>(entity =>
