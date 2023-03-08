@@ -21,9 +21,10 @@ Console.WriteLine("Hello, World!");
 
 //var selectedNames = names.Where(n => n.Contains("e")).OrderByDescending(n => n).ToList();
 
-var dao = new EmployeesDao();
+//var dao = new EmployeesDao();
+//var employee = dao.Get(1);
 
-var employee = dao.Get(1);
-
+var gendao = new GenericDao();
+gendao.Add(new Color { Name = "Amarelo"});
 
 Console.ReadLine();
