@@ -10,49 +10,37 @@ using System.Transactions;
 
 namespace Agap2IT.Labs.RentACar.Business
 {
-    public class RentingBO
+    public class RentingBO : DefaultTemplateBO
     {
         public async Task<OpResult> RegisterCarRent(Client client, Car car)
         {
-            var dao = new GenericDao();
-            await dao.Add(client);
-
-            var rent = new Rent
+            return await DefaultBOTemplate(async () =>
             {
-                CarId = car.Id,
-                ClientId = client.Id,
-                StartDate = DateTime.UtcNow,
-            };
+                var dao = new GenericDao();
+                await dao.Add(client);
 
-            await dao.Add(rent);
+                var rent = new Rent
+                {
+                    CarId = car.Id,
+                    ClientId = client.Id,
+                    StartDate = DateTime.UtcNow,
+                };
 
-            transactionScope.Complete();
-            return new OpResult { }
+                await dao.Add(rent);
+            });
+
         }
 
         public async Task<OpResult<Client>> GetClientById(int id)
         {
-            var transactionOptions = new TransactionOptions();
-            transactionOptions.IsolationLevel = IsolationLevel.ReadCommitted;
-            transactionOptions.Timeout = TimeSpan.FromMinutes(1);
 
-            try
+            return await DefaultBOTemplate<Client>(async () =>
             {
-                using (var transactionScope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    var dao = new GenericDao();
+                var dao = new GenericDao();
+                var result = await dao.Get<Client>(id);
+                return result;
+            });
 
-                    var result = await dao.Get<Client>(id);
-
-                    transactionScope.Complete();
-
-                    return new OpResult<Client>(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new OpResult<Client>(ex);
-            }
         }
     }
 }
