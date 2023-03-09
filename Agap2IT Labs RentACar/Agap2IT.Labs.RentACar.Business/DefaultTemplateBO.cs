@@ -10,27 +10,9 @@ using System.Transactions;
 
 namespace Agap2IT.Labs.RentACar.Business
 {
-    public class RentingBO
+    public class DefaultTemplateBO
     {
-        public async Task<OpResult> RegisterCarRent(Client client, Car car)
-        {
-            var dao = new GenericDao();
-            await dao.Add(client);
-
-            var rent = new Rent
-            {
-                CarId = car.Id,
-                ClientId = client.Id,
-                StartDate = DateTime.UtcNow,
-            };
-
-            await dao.Add(rent);
-
-            transactionScope.Complete();
-            return new OpResult { }
-        }
-
-        public async Task<OpResult<Client>> GetClientById(int id)
+        public async Task<OpResult> DefaultTemplateBO(Action)
         {
             var transactionOptions = new TransactionOptions();
             transactionOptions.IsolationLevel = IsolationLevel.ReadCommitted;
@@ -40,19 +22,14 @@ namespace Agap2IT.Labs.RentACar.Business
             {
                 using (var transactionScope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    var dao = new GenericDao();
-
-                    var result = await dao.Get<Client>(id);
-
-                    transactionScope.Complete();
-
-                    return new OpResult<Client>(result);
+                    return;
                 }
             }
             catch (Exception ex)
             {
-                return new OpResult<Client>(ex);
+                return new OpResult(ex);
             }
         }
     }
 }
+
