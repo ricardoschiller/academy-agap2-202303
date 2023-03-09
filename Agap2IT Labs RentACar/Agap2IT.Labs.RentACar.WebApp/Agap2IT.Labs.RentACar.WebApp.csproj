@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Agap2IT.Labs.RentACar.Business\Agap2IT.Labs.RentACar.Business.csproj" />
     <ProjectReference Include="..\Agap2IT.Labs.RentACar.Data\Agap2IT.Labs.RentACar.Data.csproj" />
   </ItemGroup>
 

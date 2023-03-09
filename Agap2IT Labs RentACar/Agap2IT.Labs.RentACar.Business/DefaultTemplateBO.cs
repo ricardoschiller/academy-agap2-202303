@@ -35,6 +35,9 @@ namespace Agap2IT.Labs.RentACar.Business
                 using (var transactionScope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled))
                 {
                     await genericFunc();
+
+                    transactionScope.Complete();
+
                     return new OpResult();
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using Agap2IT.Labs.RentACar.Dal;
 using Agap2IT.Labs.RentACar.Data.Models;
+using Agap2IT.Labs.RentACar.Data.Pocos.Renting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Transactions;
 
 namespace Agap2IT.Labs.RentACar.Business
 {
-    public class RentingBO : DefaultTemplateBO
+    public class RentingBO : DefaultTemplateBO, IRentingBO
     {
         public async Task<OpResult> RegisterCarRent(Client client, Car car)
         {
@@ -31,14 +32,21 @@ namespace Agap2IT.Labs.RentACar.Business
 
         }
 
-        public async Task<OpResult<Client>> GetClientById(int id)
+        public async Task<OpResult<ClientPoco>> GetClientById(int id)
         {
 
-            return await DefaultBOTemplate<Client>(async () =>
+            return await DefaultBOTemplate<ClientPoco>(async () =>
             {
                 var dao = new GenericDao();
                 var result = await dao.Get<Client>(id);
-                return result;
+
+                return new ClientPoco
+                {
+                    Id = result.Id,
+                    LicenseNumber = result.LicenseNumber,
+                    Name = result.Name,
+                    Nif = result.Nif
+                };
             });
 
         }
