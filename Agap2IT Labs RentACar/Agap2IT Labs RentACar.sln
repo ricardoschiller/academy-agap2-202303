@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agap2IT.Labs.RentACar.Dal",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agap2IT.Labs.RentACar.Business", "Agap2IT.Labs.RentACar.Business\Agap2IT.Labs.RentACar.Business.csproj", "{728C5AB7-2BBE-4019-91E0-AD3CCB66812C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agap2IT.Labs.RentACar.WebApp", "Agap2IT.Labs.RentACar.WebApp\Agap2IT.Labs.RentACar.WebApp.csproj", "{0DF458E2-F94A-4CED-A5A1-7AAB6791C46C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{728C5AB7-2BBE-4019-91E0-AD3CCB66812C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{728C5AB7-2BBE-4019-91E0-AD3CCB66812C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{728C5AB7-2BBE-4019-91E0-AD3CCB66812C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF458E2-F94A-4CED-A5A1-7AAB6791C46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF458E2-F94A-4CED-A5A1-7AAB6791C46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF458E2-F94A-4CED-A5A1-7AAB6791C46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF458E2-F94A-4CED-A5A1-7AAB6791C46C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
